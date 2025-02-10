@@ -22,7 +22,7 @@ async def start(update: Update, context: CallbackContext):
     )
 
     # Ожидаем 2 секунды перед отправкой клавиатуры
-    await asyncio.sleep(2)
+    await asyncio.sleep(3)
 
     custom_keybord = [
         ['🛠️ Услуги', '💸 Выкуп'],
@@ -354,10 +354,6 @@ async def handler_services(update: Update, context: CallbackContext):
             reply_markup=reply_keybord
         )
 
-
-
-async def ransom(update: Update, context: CallbackContext):
-    text = update.message.text
     if text == '💸 Выкуп':
         ransom_caption = """
 🌟 <b>Выкуп техники — быстро и удобно!</b> 🌟
@@ -394,13 +390,17 @@ async def ransom(update: Update, context: CallbackContext):
         # Отправка сообщений с задержками
         await context.bot.send_message(chat_id=update.effective_chat.id, text=ransom_caption, parse_mode="HTML")
         
-        await asyncio.sleep(1)
+        await asyncio.sleep(4)
 
         await context.bot.send_message(chat_id=update.effective_chat.id, text=traidin_caption, parse_mode="HTML")
 
-        await asyncio.sleep(2)
+        await asyncio.sleep(5)
 
         await context.bot.send_message(chat_id=update.effective_chat.id, text=sales_platform_caption, parse_mode="HTML")
+
+        await context.bot.send_message(chat_id=update.effective_chat.id, text='<b>Мы экономим Ваши силы и нервы. Приезжайте в наш техцентр.</b>', parse_mode="HTML")
+
+        
 
 
 # Добавляем обработчики команд
@@ -412,8 +412,6 @@ application.add_handler(button_handler)
 handler_button_message = MessageHandler(filters.TEXT & ~filters.COMMAND, handler_services)
 application.add_handler(handler_button_message)
 
-ransom_message = MessageHandler(filters.TEXT & filters.Regex('💸 Выкуп'), ransom)
-application.add_handler(ransom_message)
 
 # Запускаем бота
 application.run_polling()
