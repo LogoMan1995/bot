@@ -2,8 +2,7 @@ import asyncio
 from telegram.ext import CommandHandler, MessageHandler, Application, CallbackContext, filters
 from telegram import Update, ReplyKeyboardMarkup
 
-# Замените на ваш реальный токен
-Token = '8095929731:AAEgXhDZ5PQIAogTCnWwReRlXBn9Lzr02TY'
+
 
 # Создаём объект Application
 application = Application.builder().token(Token).build()
