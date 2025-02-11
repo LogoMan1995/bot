@@ -1,6 +1,6 @@
 import asyncio
 from telegram.ext import CommandHandler, MessageHandler, Application, CallbackContext, filters
-from telegram import Update, ReplyKeyboardMarkup
+from telegram import Update, ReplyKeyboardMarkup, InputMediaPhoto, InlineKeyboardMarkup
 
 # Замените на ваш реальный токен
 Token = '8095929731:AAEgXhDZ5PQIAogTCnWwReRlXBn9Lzr02TY'
@@ -354,7 +354,7 @@ async def handler_services(update: Update, context: CallbackContext):
             reply_markup=reply_keybord
         )
 
-    if text == '💸 Выкуп':
+    elif text == '💸 Выкуп':
         ransom_caption = """
 🌟 <b>Выкуп техники — быстро и удобно!</b> 🌟
 
@@ -399,6 +399,62 @@ async def handler_services(update: Update, context: CallbackContext):
         await context.bot.send_message(chat_id=update.effective_chat.id, text=sales_platform_caption, parse_mode="HTML")
 
         await context.bot.send_message(chat_id=update.effective_chat.id, text='<b>Мы экономим Ваши силы и нервы. Приезжайте в наш техцентр.</b>', parse_mode="HTML")
+
+    elif text == '🤝 Наши партнёры':
+        media=[
+            InputMediaPhoto(open('img/hyva.jpg','rb')),
+            InputMediaPhoto(open('img/wabco.jpg','rb')),
+            InputMediaPhoto(open('img/bpw.jpg','rb')),
+            InputMediaPhoto(open('img/binotto.jpg','rb')),
+            InputMediaPhoto(open('img/jmkipper.jpg','rb')),
+            InputMediaPhoto(open('img/gazprom.jpg','rb')),
+            InputMediaPhoto(open('img/dongfeng.jpg','rb')),
+            InputMediaPhoto(open('img/faw.jpg','rb')),
+            InputMediaPhoto(open('img/sitrak.jpg','rb')),
+            InputMediaPhoto(open('img/chengloong.jpg','rb')),
+            InputMediaPhoto(open('img/tonar.jpg','rb')),
+            InputMediaPhoto(open('img/wielton.jpg','rb')),
+    ]
+        
+        group1 = media[:6]
+        group2 = media[6:]
+
+        await context.bot.send_media_group(chat_id=update.effective_chat.id, media=group1)
+        await context.bot.send_media_group(chat_id=update.effective_chat.id, media=group2)
+
+
+    elif text == '💲 Прайс-лист':   
+        price_list_caption = """
+    💰 <b>Прайс-лист на основные услуги</b> 🔧
+
+    🛠️ Слесарные работы — <b>2 500 ₽</b>
+    🛠️ Слесарные работы (со своими запчастями) — <b>3 000 ₽</b>
+
+    ⚡ Работа автоэлектрика — <b>2 800 ₽</b>
+    ⚡ Работа автоэлектрика (со своими запчастями) — <b>3 500 ₽</b>
+    """
+        await context.bot.send_message(chat_id=update.effective_chat.id,     text=price_list_caption, parse_mode="HTML")
+
+
+
+   
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+        
+
 
         
 
