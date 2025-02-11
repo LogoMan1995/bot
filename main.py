@@ -1,9 +1,9 @@
 import asyncio
 from telegram.ext import CommandHandler, MessageHandler, Application, CallbackContext, filters
-from telegram import Update, ReplyKeyboardMarkup, InputMediaPhoto, InlineKeyboardMarkup
+from telegram import Update, ReplyKeyboardMarkup, InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 
 # Замените на ваш реальный токен
-Token = '8095929731:AAEgXhDZ5PQIAogTCnWwReRlXBn9Lzr02TY'
+Token = '8095929731:AAG1Mx7MhfNqpl3BgG6LsjiV-Nvt6YWsBxQ'
 
 # Создаём объект Application
 application = Application.builder().token(Token).build()
@@ -434,6 +434,65 @@ async def handler_services(update: Update, context: CallbackContext):
     ⚡ Работа автоэлектрика (со своими запчастями) — <b>3 500 ₽</b>
     """
         await context.bot.send_message(chat_id=update.effective_chat.id,     text=price_list_caption, parse_mode="HTML")
+
+
+    elif text ==  '📞 Контакты':
+        description = """ 
+<b>СВЯЖИТЕСЬ С НАМИ — МЫ ВСЕГДА НА СВЯЗИ!</b> 📞
+
+Наша команда всегда готова помочь вам с <b>любым вопросами</b> и <b>уточнениями</b>. Мы ценим ваше время ⏳ и стремимся предоставить вам <b>точную</b> и <b>оперативную информацию</b>. ✅
+
+<b>Позвоните нам</b>, и мы с радостью ответим на все ваши вопросы. 📱 У нас есть <b>специалисты</b> по <b>продажам</b>, <b>сервису</b> и <b>запчастям</b>, которые всегда готовы оказать необходимую помощь. 🛠️
+
+<b>Свяжитесь с нами прямо сейчас</b>, и мы сделаем все, чтобы ваш опыт с нами был максимально <b>удобным и результативным</b>. 🌟
+"""
+        await context.bot.send_message(chat_id=update.effective_chat.id,text=description, 
+        parse_mode="HTML")
+
+        await asyncio.sleep(3)
+
+
+        numbers = '''
+📞 <b>ОБЩИЙ</b>:      +74951428194
+
+💼 <b>ПРОДАЖИ</b>:    +79015003343
+
+🔧 <b>Cервис</b>:     +79775453344
+
+🔩  <b>ОТДЕЛ ЗАПЧАСТЕЙ</b>: +79915948006
+'''
+
+
+        await context.bot.send_message(chat_id=update.effective_chat.id,text=numbers, 
+        parse_mode="HTML")
+
+        await asyncio.sleep(4)
+       
+        yandex_map_url = "https://yandex.com.ge/maps/-/CHqRMVk2"
+        await update.message.reply_text(f'<a href="{yandex_map_url}"><b>📍Московская область, городской округ Чехов, территориальный отдел Баранцевский, точка на карте 55.135484, 37.516621🗺️</b></a>', parse_mode='HTML')
+
+        await asyncio.sleep(5)
+
+          
+        keyboard = [
+        [InlineKeyboardButton(text="Наш сайт 🌐", url='https://kts77.ru/')],
+        [InlineKeyboardButton(text="Напишите нам на почту 💌", url='https://mail.yandex.ru/compose?to=info@kts77.ru')]]
+
+
+
+        description_end = '''
+Посетите наш <b>сайт</b> 🌐 или напишите нам на <b>почту</b> 💌 — мы всегда готовы предложить вам <b>лучшие решения</b> 💡!
+'''
+
+        markup = InlineKeyboardMarkup(keyboard)
+
+        await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=description_end, reply_markup=markup, parse_mode="HTML")
+
+
+
+
+
 
 
 
