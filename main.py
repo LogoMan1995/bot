@@ -493,42 +493,8 @@ async def handler_services(update: Update, context: CallbackContext):
 
 
 
-
-
-
-
-
-   
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-        
-
-
-        
-
-
-# Добавляем обработчики команд
 button_handler = CommandHandler('start', start)
-
 application.add_handler(button_handler)
-
-# Добавляем обработчик для сообщений (кнопок)
 handler_button_message = MessageHandler(filters.TEXT & ~filters.COMMAND, handler_services)
 application.add_handler(handler_button_message)
-
-
-# Запускаем бота
 application.run_polling()
