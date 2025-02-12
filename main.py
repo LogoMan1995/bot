@@ -2,13 +2,13 @@ import asyncio
 from telegram.ext import CommandHandler, MessageHandler, Application, CallbackContext, filters
 from telegram import Update, ReplyKeyboardMarkup, InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 
-# Замените на ваш реальный токен
-Token = '8095929731:AAG1Mx7MhfNqpl3BgG6LsjiV-Nvt6YWsBxQ'
 
-# Создаём объект Application
+
+
+
 application = Application.builder().token(Token).build()
 
-# Обработчик команды /start
+
 async def start(update: Update, context: CallbackContext):
     message = """
 <b>Добро пожаловать в наш техцентр, где ваш грузовик в надежных руках! 🚛</b>  
@@ -21,7 +21,7 @@ async def start(update: Update, context: CallbackContext):
         text=message, parse_mode="HTML"
     )
 
-    # Ожидаем 2 секунды перед отправкой клавиатуры
+   
     await asyncio.sleep(3)
 
     custom_keybord = [
@@ -30,10 +30,10 @@ async def start(update: Update, context: CallbackContext):
         ['💲 Прайс-лист', '📞 Контакты'],
     ]
 
-    # Подгоняем кнопки под размер экрана
+    
     reply_keybord = ReplyKeyboardMarkup(custom_keybord, resize_keyboard=True, one_time_keyboard=True)
 
-    # Отправляем сообщение с клавиатурой
+    
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
         text='Для удобства выберите одну из категорий на клавиатуре, и мы предоставим вам всю нужную информацию о наших услугах и компании!',
@@ -41,7 +41,6 @@ async def start(update: Update, context: CallbackContext):
     )
 
 
-# Обработчик для кнопок
 async def handler_services(update: Update, context: CallbackContext):
     text = update.message.text
 
@@ -58,7 +57,7 @@ async def handler_services(update: Update, context: CallbackContext):
 
         reply_keybord = ReplyKeyboardMarkup(custom_keybord, resize_keyboard=True, one_time_keyboard=True)
 
-        # Отправляем сообщение с клавиатурой
+        
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text='Мы предоставим полную информацию по данным услугам',
@@ -87,7 +86,7 @@ async def handler_services(update: Update, context: CallbackContext):
 📸 Фото: Сезонное обслуживание
 """
 
-        # Отправка фото и текста
+        
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             photo='img/mechanical-engineering.jpg',  # Замените на путь к изображению или URL
@@ -144,7 +143,7 @@ async def handler_services(update: Update, context: CallbackContext):
 📸 Фото: Замена лобовых стекол
 '''
 
-        # Отправка двух частей сообщения
+        
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             photo='img/metalworking.jpg',  # Замените на путь к изображению или URL
@@ -152,7 +151,7 @@ async def handler_services(update: Update, context: CallbackContext):
             parse_mode="HTML"
         )
 
-        # Отправка второй части
+        
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=metalworkingShop_part2,
@@ -186,10 +185,10 @@ async def handler_services(update: Update, context: CallbackContext):
 📸 Фото: Замена стоек стабилизаторов
 '''
 
-        # Отправка фото и текста
+        
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
-            photo='img/chassisrepair.jpg',  # Замените на путь к изображению или URL
+            photo='img/chassisrepair.jpg', 
             caption=ChassisRepair,
             parse_mode="HTML"
         )
@@ -238,12 +237,12 @@ async def handler_services(update: Update, context: CallbackContext):
 
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
-            photo='img/computer-diagnostics.jpg',  # Замените на путь к изображению или URL
+            photo='img/computer-diagnostics.jpg',
             caption=diagnostic_services_part1,
             parse_mode="HTML"
         )
 
-        # Отправка второй части
+        
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=diagnostic_services_part2,
@@ -274,7 +273,7 @@ async def handler_services(update: Update, context: CallbackContext):
 '''
         
 
-        # Отправка текста
+        
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             photo='img/electrical.jpg',
@@ -324,7 +323,7 @@ async def handler_services(update: Update, context: CallbackContext):
 📸 Фото: Сварочные работы
 '''
 
-        # Отправка текста
+        
         await context.bot.send_photo(
             chat_id=update.effective_chat.id,
             photo='img/semitrailerrepair.jpg',
@@ -332,7 +331,7 @@ async def handler_services(update: Update, context: CallbackContext):
             parse_mode="HTML"
         )
 
-        # Отправка второго блока текста
+        
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text=semitrailerpart2,
@@ -387,7 +386,7 @@ async def handler_services(update: Update, context: CallbackContext):
 💼 <b>Продажа с нашей помощью для вас</b> <b>абсолютно бесплатна</b>!
 """
 
-        # Отправка сообщений с задержками
+        
         await context.bot.send_message(chat_id=update.effective_chat.id, text=ransom_caption, parse_mode="HTML")
         
         await asyncio.sleep(4)
@@ -476,7 +475,10 @@ async def handler_services(update: Update, context: CallbackContext):
           
         keyboard = [
         [InlineKeyboardButton(text="Наш сайт 🌐", url='https://kts77.ru/')],
-        [InlineKeyboardButton(text="Напишите нам на почту 💌", url='https://mail.yandex.ru/compose?to=info@kts77.ru')]]
+        [InlineKeyboardButton(text="Напишите нам на почту 💌", url='https://mail.yandex.ru/compose?to=info@kts77.ru')],
+        #[InlineKeyboardButton(text="Позвоните нам", url='tel:+7999999999')]
+        #telegram.error.BadRequest: Inline keyboard button url 'tel:+7999999999' is invalid: wrong port number specified in the url
+        ]
 
 
 
